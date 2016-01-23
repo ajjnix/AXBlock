@@ -9,10 +9,25 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>AXBlock_Tests.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>2D17BA241C53D1DC00AAA8B4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2D17BA341C53D22000AAA8B4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2D17BA401C53D29F00AAA8B4</key>
 		<dict>
 			<key>primary</key>
 			<true/>

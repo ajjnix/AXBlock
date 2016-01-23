@@ -9,7 +9,20 @@
 /* Begin PBXBuildFile section */
 		2D17BA291C53D1DC00AAA8B4 /* AXBlock.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2D17BA281C53D1DC00AAA8B4 /* AXBlock.h */; };
 		2D17BA2B1C53D1DC00AAA8B4 /* AXBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D17BA2A1C53D1DC00AAA8B4 /* AXBlock.m */; };
+		2D17BA461C53D29F00AAA8B4 /* libAXBlock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D17BA251C53D1DC00AAA8B4 /* libAXBlock.a */; };
+		2D17BA501C53D42400AAA8B4 /* AXProxyBlock_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D17BA4F1C53D42400AAA8B4 /* AXProxyBlock_Tests.m */; };
+		2D17BA541C53D49100AAA8B4 /* AXProxyBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D17BA531C53D49100AAA8B4 /* AXProxyBlock.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2D17BA471C53D29F00AAA8B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2D17BA1D1C53D1DC00AAA8B4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2D17BA241C53D1DC00AAA8B4;
+			remoteInfo = AXBlock;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		2D17BA231C53D1DC00AAA8B4 /* CopyFiles */ = {
@@ -28,6 +41,12 @@
 		2D17BA251C53D1DC00AAA8B4 /* libAXBlock.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAXBlock.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D17BA281C53D1DC00AAA8B4 /* AXBlock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AXBlock.h; sourceTree = "<group>"; };
 		2D17BA2A1C53D1DC00AAA8B4 /* AXBlock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AXBlock.m; sourceTree = "<group>"; };
+		2D17BA391C53D22000AAA8B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2D17BA411C53D29F00AAA8B4 /* AXBlock_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AXBlock_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D17BA4F1C53D42400AAA8B4 /* AXProxyBlock_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXProxyBlock_Tests.m; sourceTree = "<group>"; };
+		2D17BA521C53D49100AAA8B4 /* AXProxyBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AXProxyBlock.h; sourceTree = "<group>"; };
+		2D17BA531C53D49100AAA8B4 /* AXProxyBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXProxyBlock.m; sourceTree = "<group>"; };
+		2D17BA551C53D78C00AAA8B4 /* NSInvocation+AXPrivate_API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSInvocation+AXPrivate_API.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +57,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2D17BA3E1C53D29F00AAA8B4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D17BA461C53D29F00AAA8B4 /* libAXBlock.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -45,6 +72,7 @@
 			isa = PBXGroup;
 			children = (
 				2D17BA271C53D1DC00AAA8B4 /* AXBlock */,
+				2D17BA361C53D22000AAA8B4 /* AXBlock_Tests */,
 				2D17BA261C53D1DC00AAA8B4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -53,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				2D17BA251C53D1DC00AAA8B4 /* libAXBlock.a */,
+				2D17BA411C53D29F00AAA8B4 /* AXBlock_Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -60,10 +89,30 @@
 		2D17BA271C53D1DC00AAA8B4 /* AXBlock */ = {
 			isa = PBXGroup;
 			children = (
+				2D17BA511C53D48700AAA8B4 /* AXProxyBlock */,
 				2D17BA281C53D1DC00AAA8B4 /* AXBlock.h */,
 				2D17BA2A1C53D1DC00AAA8B4 /* AXBlock.m */,
 			);
 			path = AXBlock;
+			sourceTree = "<group>";
+		};
+		2D17BA361C53D22000AAA8B4 /* AXBlock_Tests */ = {
+			isa = PBXGroup;
+			children = (
+				2D17BA4F1C53D42400AAA8B4 /* AXProxyBlock_Tests.m */,
+				2D17BA391C53D22000AAA8B4 /* Info.plist */,
+			);
+			path = AXBlock_Tests;
+			sourceTree = "<group>";
+		};
+		2D17BA511C53D48700AAA8B4 /* AXProxyBlock */ = {
+			isa = PBXGroup;
+			children = (
+				2D17BA521C53D49100AAA8B4 /* AXProxyBlock.h */,
+				2D17BA531C53D49100AAA8B4 /* AXProxyBlock.m */,
+				2D17BA551C53D78C00AAA8B4 /* NSInvocation+AXPrivate_API.h */,
+			);
+			name = AXProxyBlock;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -86,6 +135,24 @@
 			productReference = 2D17BA251C53D1DC00AAA8B4 /* libAXBlock.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		2D17BA401C53D29F00AAA8B4 /* AXBlock_Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2D17BA491C53D29F00AAA8B4 /* Build configuration list for PBXNativeTarget "AXBlock_Tests" */;
+			buildPhases = (
+				2D17BA3D1C53D29F00AAA8B4 /* Sources */,
+				2D17BA3E1C53D29F00AAA8B4 /* Frameworks */,
+				2D17BA3F1C53D29F00AAA8B4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2D17BA481C53D29F00AAA8B4 /* PBXTargetDependency */,
+			);
+			name = AXBlock_Tests;
+			productName = AXBlock_Tests;
+			productReference = 2D17BA411C53D29F00AAA8B4 /* AXBlock_Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -96,6 +163,9 @@
 				ORGANIZATIONNAME = "Artem Mylnikov (ajjnix)";
 				TargetAttributes = {
 					2D17BA241C53D1DC00AAA8B4 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+					2D17BA401C53D29F00AAA8B4 = {
 						CreatedOnToolsVersion = 7.2;
 					};
 				};
@@ -113,9 +183,20 @@
 			projectRoot = "";
 			targets = (
 				2D17BA241C53D1DC00AAA8B4 /* AXBlock */,
+				2D17BA401C53D29F00AAA8B4 /* AXBlock_Tests */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2D17BA3F1C53D29F00AAA8B4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2D17BA211C53D1DC00AAA8B4 /* Sources */ = {
@@ -123,10 +204,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D17BA2B1C53D1DC00AAA8B4 /* AXBlock.m in Sources */,
+				2D17BA541C53D49100AAA8B4 /* AXProxyBlock.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2D17BA3D1C53D29F00AAA8B4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D17BA501C53D42400AAA8B4 /* AXProxyBlock_Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2D17BA481C53D29F00AAA8B4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2D17BA241C53D1DC00AAA8B4 /* AXBlock */;
+			targetProxy = 2D17BA471C53D29F00AAA8B4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		2D17BA2C1C53D1DC00AAA8B4 /* Debug */ = {
@@ -227,6 +325,26 @@
 			};
 			name = Release;
 		};
+		2D17BA4A1C53D29F00AAA8B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = AXBlock_Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ajjnix.AXBlock-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		2D17BA4B1C53D29F00AAA8B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = AXBlock_Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ajjnix.AXBlock-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -246,6 +364,16 @@
 				2D17BA301C53D1DC00AAA8B4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D17BA491C53D29F00AAA8B4 /* Build configuration list for PBXNativeTarget "AXBlock_Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2D17BA4A1C53D29F00AAA8B4 /* Debug */,
+				2D17BA4B1C53D29F00AAA8B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

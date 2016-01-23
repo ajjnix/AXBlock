@@ -19,8 +19,39 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "AXBlock.h"
+#import <XCTest/XCTest.h>
+#import "AXProxyBlock.h"
 
 
-@implementation AXBlock
+@interface AXProxyBlock_Tests : XCTestCase
+@end
+
+
+@implementation AXProxyBlock_Tests
+
+- (void)setUp {
+    [super setUp];
+    // Put setup code here. This method is called before the invocation of each test method in the class.
+}
+
+- (void)tearDown {
+    // Put teardown code here. This method is called after the invocation of each test method in the class.
+    [super tearDown];
+}
+
+- (void)testProxyBlockBefore {
+    typedef id(^StringBlock)(NSString *);
+    
+    StringBlock blockHello = ^(NSString *name){
+        return [NSString stringWithFormat:@"Hello %@", name];
+    };
+    StringBlock proxyBlock = (StringBlock)[AXProxyBlock initWithBlock:blockHello];
+    [proxyBlock setBefore:^(NSInvocation *invocation){
+        NSString *nick = @"ajjnix";
+        [invocation setArgument:&nick atIndex:1];
+    }];
+    NSString *result = proxyBlock(@"Alex");
+    XCTAssertEqualObjects(result, @"Hello ajjnix");
+}
+
 @end
