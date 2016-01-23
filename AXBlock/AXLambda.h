@@ -19,5 +19,13 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "AXProxyBlock.h"
-#import "AXLambda"
+#import <Foundation/Foundation.h>
+
+
+SEL ax_lambda(id obj, id block, NSMutableArray *lambdas);
+
+@interface NSObject (AX_Lambda)
+
+- (SEL)lambda:(id)block;
+
+@end

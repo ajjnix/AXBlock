@@ -20,4 +20,7 @@
 // THE SOFTWARE.
 
 #import "AXProxyBlock.h"
-#import "AXLambda"
+
+
+@interface AXProxyBlockWithSelf : AXProxyBlock
+@end

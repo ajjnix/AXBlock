@@ -43,12 +43,12 @@ typedef struct AXBlockStruct {
 } AXBlockStruct;
 
 
-typedef NS_ENUM(NSUInteger, AX_Block_flag) {
-    AX_Block_flag_has_copy_dispose = (1 << 25),
-    AX_Block_flag_has_ctor = (1 << 26),
-    AX_Block_flag_is_global = (1 << 28),
-    AX_Block_flag_has_stret = (1 << 29),
-    AX_Block_flag_has_signature = (1 << 30)
+typedef NS_ENUM(NSUInteger, AXBlockFlag) {
+    AXBlockFlag_HasCopyDispose = (1 << 25),
+    AXBlockFlag_HasCtor = (1 << 26),
+    AXBlockFlag_IsGlobal = (1 << 28),
+    AXBlockFlag_HasStret = (1 << 29),
+    AXBlockFlag_HasSignature = (1 << 30)
 };
 
 
@@ -84,7 +84,7 @@ typedef NS_ENUM(NSUInteger, AX_Block_flag) {
         _descriptor = calloc(1, sizeof(AXBlockStruct_1));
         _descriptor->size = class_getInstanceSize([self class]);
         
-        BOOL flag_stret = _flags & AX_Block_flag_has_stret;
+        BOOL flag_stret = _flags & AXBlockFlag_HasStret;
         _invoke = (flag_stret ? (IMP)_objc_msgForward_stret : (IMP)_objc_msgForward);
         _blockInvoke = (IMP)blockRef->invoke;
         _blockSignature = [self blockSignature];
@@ -107,12 +107,12 @@ typedef NS_ENUM(NSUInteger, AX_Block_flag) {
     const int flags = blockRef->flags;
     
     void *signatureLocation = blockRef->descriptor;
-    if (flags & AX_Block_flag_has_signature) {
+    if (flags & AXBlockFlag_HasSignature) {
         
         signatureLocation += sizeof(unsigned long int);
         signatureLocation += sizeof(unsigned long int);
         
-        if (flags & AX_Block_flag_has_copy_dispose) {
+        if (flags & AXBlockFlag_HasCopyDispose) {
             signatureLocation += sizeof(void(*)(void *dst, void *src));
             signatureLocation += sizeof(void (*)(void *src));
         }

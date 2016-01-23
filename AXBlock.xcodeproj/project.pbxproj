@@ -8,10 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		2D17BA291C53D1DC00AAA8B4 /* AXBlock.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2D17BA281C53D1DC00AAA8B4 /* AXBlock.h */; };
-		2D17BA2B1C53D1DC00AAA8B4 /* AXBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D17BA2A1C53D1DC00AAA8B4 /* AXBlock.m */; };
 		2D17BA461C53D29F00AAA8B4 /* libAXBlock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D17BA251C53D1DC00AAA8B4 /* libAXBlock.a */; };
 		2D17BA501C53D42400AAA8B4 /* AXProxyBlock_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D17BA4F1C53D42400AAA8B4 /* AXProxyBlock_Tests.m */; };
 		2D17BA541C53D49100AAA8B4 /* AXProxyBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D17BA531C53D49100AAA8B4 /* AXProxyBlock.m */; };
+		2D7474A11C53E22D00341D51 /* NSString+AX_NSString.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D7474A01C53E22D00341D51 /* NSString+AX_NSString.m */; };
+		2D7474A31C53E25800341D51 /* AXLambda_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D7474A21C53E25800341D51 /* AXLambda_Tests.m */; };
+		2D7474A61C53E27F00341D51 /* AXLambda.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D7474A51C53E27F00341D51 /* AXLambda.m */; };
+		2D7474A91C53E30A00341D51 /* AXProxyBlockWithSelf.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D7474A81C53E30A00341D51 /* AXProxyBlockWithSelf.m */; };
+		2D7474AB1C53E34B00341D51 /* AX_NSString_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D7474AA1C53E34B00341D51 /* AX_NSString_Tests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,13 +44,20 @@
 /* Begin PBXFileReference section */
 		2D17BA251C53D1DC00AAA8B4 /* libAXBlock.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAXBlock.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D17BA281C53D1DC00AAA8B4 /* AXBlock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AXBlock.h; sourceTree = "<group>"; };
-		2D17BA2A1C53D1DC00AAA8B4 /* AXBlock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AXBlock.m; sourceTree = "<group>"; };
 		2D17BA391C53D22000AAA8B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D17BA411C53D29F00AAA8B4 /* AXBlock_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AXBlock_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D17BA4F1C53D42400AAA8B4 /* AXProxyBlock_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXProxyBlock_Tests.m; sourceTree = "<group>"; };
 		2D17BA521C53D49100AAA8B4 /* AXProxyBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AXProxyBlock.h; sourceTree = "<group>"; };
 		2D17BA531C53D49100AAA8B4 /* AXProxyBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXProxyBlock.m; sourceTree = "<group>"; };
 		2D17BA551C53D78C00AAA8B4 /* NSInvocation+AXPrivate_API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSInvocation+AXPrivate_API.h"; sourceTree = "<group>"; };
+		2D74749F1C53E22D00341D51 /* NSString+AX_NSString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+AX_NSString.h"; sourceTree = "<group>"; };
+		2D7474A01C53E22D00341D51 /* NSString+AX_NSString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+AX_NSString.m"; sourceTree = "<group>"; };
+		2D7474A21C53E25800341D51 /* AXLambda_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXLambda_Tests.m; sourceTree = "<group>"; };
+		2D7474A41C53E27F00341D51 /* AXLambda.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AXLambda.h; sourceTree = "<group>"; };
+		2D7474A51C53E27F00341D51 /* AXLambda.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXLambda.m; sourceTree = "<group>"; };
+		2D7474A71C53E30A00341D51 /* AXProxyBlockWithSelf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AXProxyBlockWithSelf.h; sourceTree = "<group>"; };
+		2D7474A81C53E30A00341D51 /* AXProxyBlockWithSelf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXProxyBlockWithSelf.m; sourceTree = "<group>"; };
+		2D7474AA1C53E34B00341D51 /* AX_NSString_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AX_NSString_Tests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,9 +100,10 @@
 		2D17BA271C53D1DC00AAA8B4 /* AXBlock */ = {
 			isa = PBXGroup;
 			children = (
+				2D74749D1C53E20C00341D51 /* Helper */,
+				2D74749E1C53E21100341D51 /* AXLambda */,
 				2D17BA511C53D48700AAA8B4 /* AXProxyBlock */,
 				2D17BA281C53D1DC00AAA8B4 /* AXBlock.h */,
-				2D17BA2A1C53D1DC00AAA8B4 /* AXBlock.m */,
 			);
 			path = AXBlock;
 			sourceTree = "<group>";
@@ -100,7 +112,9 @@
 			isa = PBXGroup;
 			children = (
 				2D17BA4F1C53D42400AAA8B4 /* AXProxyBlock_Tests.m */,
+				2D7474A21C53E25800341D51 /* AXLambda_Tests.m */,
 				2D17BA391C53D22000AAA8B4 /* Info.plist */,
+				2D7474AA1C53E34B00341D51 /* AX_NSString_Tests.m */,
 			);
 			path = AXBlock_Tests;
 			sourceTree = "<group>";
@@ -113,6 +127,26 @@
 				2D17BA551C53D78C00AAA8B4 /* NSInvocation+AXPrivate_API.h */,
 			);
 			name = AXProxyBlock;
+			sourceTree = "<group>";
+		};
+		2D74749D1C53E20C00341D51 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				2D74749F1C53E22D00341D51 /* NSString+AX_NSString.h */,
+				2D7474A01C53E22D00341D51 /* NSString+AX_NSString.m */,
+			);
+			name = Helper;
+			sourceTree = "<group>";
+		};
+		2D74749E1C53E21100341D51 /* AXLambda */ = {
+			isa = PBXGroup;
+			children = (
+				2D7474A41C53E27F00341D51 /* AXLambda.h */,
+				2D7474A51C53E27F00341D51 /* AXLambda.m */,
+				2D7474A71C53E30A00341D51 /* AXProxyBlockWithSelf.h */,
+				2D7474A81C53E30A00341D51 /* AXProxyBlockWithSelf.m */,
+			);
+			name = AXLambda;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,8 +237,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D17BA2B1C53D1DC00AAA8B4 /* AXBlock.m in Sources */,
+				2D7474A11C53E22D00341D51 /* NSString+AX_NSString.m in Sources */,
 				2D17BA541C53D49100AAA8B4 /* AXProxyBlock.m in Sources */,
+				2D7474A61C53E27F00341D51 /* AXLambda.m in Sources */,
+				2D7474A91C53E30A00341D51 /* AXProxyBlockWithSelf.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,6 +249,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D17BA501C53D42400AAA8B4 /* AXProxyBlock_Tests.m in Sources */,
+				2D7474A31C53E25800341D51 /* AXLambda_Tests.m in Sources */,
+				2D7474AB1C53E34B00341D51 /* AX_NSString_Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +304,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -302,6 +341,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

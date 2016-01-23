@@ -19,8 +19,15 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "AXBlock.h"
+#import <Foundation/Foundation.h>
 
 
-@implementation AXBlock
+@interface NSString (AX_NSString)
+
+- (NSString *)ax_unformatDecToObj;
+
+- (NSArray *)ax_numbers;
+
++ (instancetype)ax_stringWithFormat:(NSString *)format array:(NSArray *)arguments;
+
 @end
