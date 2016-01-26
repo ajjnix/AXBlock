@@ -52,8 +52,9 @@
 + (instancetype)ax_stringWithFormat:(NSString *)format array:(NSArray *)arrayArguments {
     NSMethodSignature *methodSignature = [self ax_generateSignatureForArguments:arrayArguments];
     NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
-    [invocation setTarget:self];
-    [invocation setSelector:@selector(ax_string:)];
+
+    [invocation setTarget:[NSString class]];
+    [invocation setSelector:@selector(stringWithFormat:)];
     
     [invocation setArgument:&format atIndex:2];
     for (NSInteger i = 0; i < [arrayArguments count]; i++) {
@@ -67,14 +68,6 @@
     [invocation getReturnValue:&string];
     
     return string;
-}
-
-+ (instancetype)ax_string:(NSString *)format, ... {
-    va_list list;
-    va_start(list, format);
-    NSString *str = [[NSString alloc] initWithFormat:format arguments:list];
-    va_end(list);
-    return str;
 }
 
 + (NSMethodSignature *)ax_generateSignatureForArguments:(NSArray *)arguments {
