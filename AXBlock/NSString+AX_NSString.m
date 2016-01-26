@@ -55,10 +55,10 @@
     [invocation setTarget:self];
     [invocation setSelector:@selector(ax_string:)];
     
-    [invocation setArgument:(void*)&format atIndex:2];
+    [invocation setArgument:&format atIndex:2];
     for (NSInteger i = 0; i < [arrayArguments count]; i++) {
         NSNumber *numb = arrayArguments[i];
-        [invocation setArgument:(void*)(&numb) atIndex:i+3];
+        [invocation setArgument:(&numb) atIndex:i+3];
     }
     
     [invocation invoke];
@@ -77,13 +77,15 @@
     return str;
 }
 
-+ (NSMethodSignature *)ax_generateSignatureForArguments:(NSArray *)arrayArguments {
-    NSInteger count = [arrayArguments count];
++ (NSMethodSignature *)ax_generateSignatureForArguments:(NSArray *)arguments {
+    NSInteger count = [arguments count];
     NSInteger sizeptr = sizeof(void *);
+    NSInteger sumArgInvoke = count + 3; //self + _cmd + (NSString *)format
+    NSInteger offsetReturnType = sumArgInvoke * sizeptr;
+    
     NSMutableString *mstring = [[NSMutableString alloc] init];
-    NSInteger sumArgInvoke = count + 3;
-    [mstring appendFormat:@"@%zd@?0", sumArgInvoke * sizeptr];
-    for (NSInteger i = 1; i < sumArgInvoke; i++) {
+    [mstring appendFormat:@"@%zd@0:%zd", offsetReturnType, sizeptr];
+    for (NSInteger i = 2; i < sumArgInvoke; i++) {
         [mstring appendFormat:@"@%zd", sizeptr * i];
     }
     return [NSMethodSignature signatureWithObjCTypes:[mstring UTF8String]];

@@ -77,6 +77,21 @@
 - (void)testLambdaFuncReturn2 {
     const NSInteger a = 3;
     const NSInteger b = 2;
+    const NSInteger expected = 5;
+    
+    NSObject *obj = [[NSObject alloc] init];
+    SEL selSum = [obj lambda:^NSInteger(NSInteger argA, NSInteger argB){
+        return argA + argB;
+    }];
+    
+    NSInteger(*funcSum)(id, SEL, NSInteger, NSInteger) = (NSInteger(*)(id, SEL, NSInteger, NSInteger))objc_msgSend;
+    NSInteger sum = funcSum(obj, selSum, a, b);
+    XCTAssertEqual(sum, expected);
+}
+
+- (void)testLambdaFuncReturn3 {
+    const NSInteger a = 3;
+    const NSInteger b = 2;
     const NSInteger expectedSum = 5;
     const NSInteger expectedDed = 1;
     NSInteger(*func)(id, SEL, NSInteger, NSInteger) = (NSInteger(*)(id, SEL, NSInteger, NSInteger))objc_msgSend;

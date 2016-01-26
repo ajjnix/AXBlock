@@ -113,8 +113,8 @@
 			children = (
 				2D17BA4F1C53D42400AAA8B4 /* AXProxyBlock_Tests.m */,
 				2D7474A21C53E25800341D51 /* AXLambda_Tests.m */,
-				2D17BA391C53D22000AAA8B4 /* Info.plist */,
 				2D7474AA1C53E34B00341D51 /* AX_NSString_Tests.m */,
+				2D17BA391C53D22000AAA8B4 /* Info.plist */,
 			);
 			path = AXBlock_Tests;
 			sourceTree = "<group>";

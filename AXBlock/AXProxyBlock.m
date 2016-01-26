@@ -57,7 +57,7 @@ typedef NS_ENUM(NSUInteger, AXBlockFlag) {
     int _flags;
     int _reserved;
     IMP _invoke;
-    struct AXBlockStruct_1 *_descriptor;
+    AXBlockStruct_1 *_descriptor;
     
     AXProxyBlockInterpose _before;
     id _block;
@@ -107,15 +107,12 @@ typedef NS_ENUM(NSUInteger, AXBlockFlag) {
     const int flags = blockRef->flags;
     
     void *signatureLocation = blockRef->descriptor;
-    if (flags & AXBlockFlag_HasSignature) {
-        
-        signatureLocation += sizeof(unsigned long int);
-        signatureLocation += sizeof(unsigned long int);
-        
-        if (flags & AXBlockFlag_HasCopyDispose) {
-            signatureLocation += sizeof(void(*)(void *dst, void *src));
-            signatureLocation += sizeof(void (*)(void *src));
-        }
+    signatureLocation += sizeof(unsigned long int);
+    signatureLocation += sizeof(unsigned long int);
+    
+    if (flags & AXBlockFlag_HasCopyDispose) {
+        signatureLocation += sizeof(void(*)(void *dst, void *src));
+        signatureLocation += sizeof(void (*)(void *src));
     }
     
     return (*(const char **)signatureLocation);
