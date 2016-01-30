@@ -28,8 +28,17 @@
     NSCharacterSet *characterSet = [NSCharacterSet decimalDigitCharacterSet];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"length > 0"];
     NSArray *separated = [[self componentsSeparatedByCharactersInSet:characterSet] filteredArrayUsingPredicate:predicate];
-    NSString *format = [[separated componentsJoinedByString:@"%@"] stringByAppendingString:@"%@"];
-    return format;
+    NSString *format = [separated componentsJoinedByString:@"%@"];
+    if ([[self lastSubstring] isEqualToString:[format lastSubstring]] ) {
+        return format;
+    } else {
+        return [format stringByAppendingString:@"%@"];
+    }
+}
+
+- (NSString *)lastSubstring {
+    NSInteger lastIndex = [self length] - 1;
+    return [self substringFromIndex:lastIndex];
 }
 
 - (NSArray *)ax_numbers {
@@ -53,13 +62,13 @@
     NSMethodSignature *methodSignature = [self ax_generateSignatureForArguments:arrayArguments];
     NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
 
-    [invocation setTarget:[NSString class]];
+    [invocation setTarget:self];
     [invocation setSelector:@selector(stringWithFormat:)];
     
     [invocation setArgument:&format atIndex:2];
     for (NSInteger i = 0; i < [arrayArguments count]; i++) {
-        NSNumber *numb = arrayArguments[i];
-        [invocation setArgument:(&numb) atIndex:i+3];
+        id obj = arrayArguments[i];
+        [invocation setArgument:(&obj) atIndex:i+3];
     }
     
     [invocation invoke];
@@ -70,6 +79,7 @@
     return string;
 }
 
+//https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtTypeEncodings.html
 + (NSMethodSignature *)ax_generateSignatureForArguments:(NSArray *)arguments {
     NSInteger count = [arguments count];
     NSInteger sizeptr = sizeof(void *);

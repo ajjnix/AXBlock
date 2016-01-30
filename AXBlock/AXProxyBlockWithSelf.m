@@ -26,7 +26,13 @@
 @implementation AXProxyBlockWithSelf
 
 - (NSMethodSignature *)blockSignature {
-    const char *signatureCTypes = strdup([self signatureCTypes]);
+    NSString *resultSignature = [self signatureStringWithSelf];
+    NSMethodSignature *methodSignature = [NSMethodSignature signatureWithObjCTypes:[resultSignature UTF8String]];
+    return methodSignature;
+}
+
+- (NSString *)signatureStringWithSelf {
+    const char *signatureCTypes = [self signatureCTypes];
     NSString *signature = [NSString stringWithUTF8String:signatureCTypes];
     NSString *unformatObject = [signature ax_unformatDecToObj];
     NSString *formatNewSignature = [self addSelfFormat:unformatObject];
@@ -36,9 +42,7 @@
     
     NSString *resultSignature = [NSString ax_stringWithFormat:formatNewSignature array:byteNewSignature];
     
-    free((void *)signatureCTypes);
-    NSMethodSignature *methodSignature = [NSMethodSignature signatureWithObjCTypes:[resultSignature UTF8String]];
-    return methodSignature;
+    return resultSignature;
 }
 
 - (NSString *)addSelfFormat:(NSString *)format {

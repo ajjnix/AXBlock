@@ -23,4 +23,7 @@
 
 
 @interface AXProxyBlockWithSelf : AXProxyBlock
+
+- (NSString *)signatureStringWithSelf;
+
 @end

@@ -52,7 +52,7 @@ typedef NS_ENUM(NSUInteger, AXBlockFlag) {
 };
 
 
-@interface AXProxyBlock () <NSCopying>  {
+@interface AXProxyBlock ()  {
     //isa exist in NSObject
     int _flags;
     int _reserved;
@@ -89,10 +89,6 @@ typedef NS_ENUM(NSUInteger, AXBlockFlag) {
         _blockInvoke = (IMP)blockRef->invoke;
         _blockSignature = [self blockSignature];
     }
-    return self;
-}
-
-- (id)copyWithZone:(NSZone *)zone {
     return self;
 }
 

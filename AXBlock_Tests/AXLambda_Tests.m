@@ -80,7 +80,7 @@
     const NSInteger expected = 5;
     
     NSObject *obj = [[NSObject alloc] init];
-    SEL selSum = [obj lambda:^NSInteger(NSInteger argA, NSInteger argB){
+    SEL selSum = [obj ax_lambda:^NSInteger(NSInteger argA, NSInteger argB){
         return argA + argB;
     }];
     
@@ -122,7 +122,7 @@
     const NSInteger expected = 5;
     
     __block NSInteger sum = 0;
-    SEL selSum = [object lambda:^(NSNumber *argA, NSNumber *argB) {
+    SEL selSum = [object ax_lambda:^(NSNumber *argA, NSNumber *argB) {
         sum = [argA integerValue] + [argB integerValue];
     }];
     

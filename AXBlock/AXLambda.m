@@ -30,23 +30,23 @@ static char kAX_NSObjectAssociatedObjectKey;
 
 @interface NSObject (_AX_Lambda)
 
-@property (copy, nonatomic) NSMutableArray *lambdas;
+@property (copy, nonatomic) NSMutableArray *ax_lambdas;
 
 @end
 
 
 @implementation NSObject (_AX_Lambda)
 
-@dynamic lambdas;
+@dynamic ax_lambdas;
 
-- (void)setLambdas:(NSMutableArray *)lambdas {
+- (void)setAx_lambdas:(NSMutableArray *)lambdas {
     objc_setAssociatedObject(self, &kAX_NSObjectAssociatedObjectKey, lambdas, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (NSMutableArray *)lambdas {
+- (NSMutableArray *)ax_lambdas {
     NSMutableArray *marrey = objc_getAssociatedObject(self, &kAX_NSObjectAssociatedObjectKey);
     if (marrey == nil) {
-        self.lambdas = [NSMutableArray array];
+        self.ax_lambdas = [NSMutableArray array];
     }
     return objc_getAssociatedObject(self, &kAX_NSObjectAssociatedObjectKey);
 }
@@ -55,8 +55,8 @@ static char kAX_NSObjectAssociatedObjectKey;
 
 @implementation NSObject (AX_Lambda)
 
-- (SEL)lambda:(id)block {
-    return ax_lambda(self, block, self.lambdas);
+- (SEL)ax_lambda:(id)block {
+    return ax_lambda(self, block, self.ax_lambdas);
 }
 
 @end
@@ -76,7 +76,8 @@ SEL ax_lambda(id obj, id block, NSMutableArray *lambdas) {
     [lambdas addObject:proxyBlock];
     
     IMP imp = imp_implementationWithBlock(proxyBlock);
-    class_addMethod([obj class], selector, imp, "@:v");
+    NSString *signatureString = [proxyBlock signatureStringWithSelf];
+    class_addMethod([obj class], selector, imp, [signatureString UTF8String]);
     
     return selector;
 }
@@ -87,7 +88,7 @@ SEL ax_generateFreeSelector(id obj) {
     do {
         [mstring setString:@"ax_rundom_selector"];
         u_int32_t rand = arc4random_uniform(UINT32_MAX);
-        [mstring appendString:[@(rand) stringValue]];
+        [mstring appendFormat:@"%zd", rand];
         selector = NSSelectorFromString(mstring);
     } while ([obj respondsToSelector:selector]);
     return selector;
@@ -95,17 +96,11 @@ SEL ax_generateFreeSelector(id obj) {
 
 void ax_offsetArgInInvocation(NSInvocation *invocation) {
     void *foo = malloc(sizeof(void*));
-    BOOL exc = NO;
-    int index = 1;
-    
-    while (!exc) {
-        @try {
-            [invocation getArgument:foo atIndex:index+1];
-            [invocation setArgument:foo atIndex:index];
-            index++;
-        } @catch(NSException *e) {
-            exc = YES;
-        }
+    NSInteger arguments = [invocation.methodSignature numberOfArguments];
+    for (NSInteger i = 1; i < arguments-1; i++) { //i = 0 is self
+        [invocation getArgument:foo atIndex:i+1];
+        [invocation setArgument:foo atIndex:i];
     }
+    
     free(foo);
 }

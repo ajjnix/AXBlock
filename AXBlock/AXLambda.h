@@ -26,6 +26,6 @@ SEL ax_lambda(id obj, id block, NSMutableArray *lambdas);
 
 @interface NSObject (AX_Lambda)
 
-- (SEL)lambda:(id)block;
+- (SEL)ax_lambda:(id)block;
 
 @end
