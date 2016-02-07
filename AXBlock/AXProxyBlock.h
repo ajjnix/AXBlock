@@ -27,12 +27,9 @@ typedef void(^AXProxyBlockInterpose)(NSInvocation *invocation);
 
 @interface AXProxyBlock : NSProxy
 
-@property (copy, nonatomic) AXProxyBlockInterpose before;
-@property (copy, nonatomic) id block;
-
 + (instancetype)initWithBlock:(id)block;
 
-- (NSMethodSignature *)blockSignature;
-- (const char *)signatureCTypes;
+- (void)setBeforeInvoke:(AXProxyBlockInterpose)beforeInvoke;
+- (NSString *)blockSignatureStringCTypes;
 
 @end

@@ -42,14 +42,14 @@
 - (void)testUnformatInt1 {
     NSString *input = @"NSString:13 helper:32,number32 ";
     NSString *expected = @"NSString:%@ helper:%@,number%@ ";
-    NSString *result = [input ax_unformatDecToObj];
+    NSString *result = [input ax_unformatDec];
     XCTAssertEqualObjects(result, expected);
 }
 
 - (void)testUnformatInt2 {
     NSString *input = @"NSString:13 helper:32,number32 foo";
     NSString *expected = @"NSString:%@ helper:%@,number%@ foo";
-    NSString *result = [input ax_unformatDecToObj];
+    NSString *result = [input ax_unformatDec];
     XCTAssertEqualObjects(result, expected);
 }
 

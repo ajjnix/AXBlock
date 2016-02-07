@@ -24,7 +24,7 @@
 
 @interface NSString (AX_NSString)
 
-- (NSString *)ax_unformatDecToObj;
+- (NSString *)ax_unformatDec;
 
 - (NSArray *)ax_numbers;
 

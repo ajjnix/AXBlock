@@ -24,7 +24,7 @@
 
 @implementation NSString (AX_NSString)
 
-- (NSString *)ax_unformatDecToObj {
+- (NSString *)ax_unformatDec {
     NSCharacterSet *characterSet = [NSCharacterSet decimalDigitCharacterSet];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"length > 0"];
     NSArray *separated = [[self componentsSeparatedByCharactersInSet:characterSet] filteredArrayUsingPredicate:predicate];

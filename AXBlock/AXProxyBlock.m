@@ -59,10 +59,10 @@ typedef NS_ENUM(NSUInteger, AXBlockFlag) {
     IMP _invoke;
     AXBlockStruct_1 *_descriptor;
     
-    AXProxyBlockInterpose _before;
+    AXProxyBlockInterpose _beforeInvoke;
     id _block;
-    NSMethodSignature *_blockSignature;
-    IMP _blockInvoke;
+    NSMethodSignature *_blockMethodSignature;
+    IMP _impBlockInvoke;
 }
 
 @end
@@ -76,8 +76,6 @@ typedef NS_ENUM(NSUInteger, AXBlockFlag) {
 
 - (instancetype)initWithBlock:(id)block {
     if (self != nil) {
-        self.block = block;
-        
         AXBlockStruct *blockRef = (__bridge AXBlockStruct *)block;
         _flags = blockRef->flags;
         _reserved = blockRef->reserved;
@@ -86,19 +84,25 @@ typedef NS_ENUM(NSUInteger, AXBlockFlag) {
         
         BOOL flag_stret = _flags & AXBlockFlag_HasStret;
         _invoke = (flag_stret ? (IMP)_objc_msgForward_stret : (IMP)_objc_msgForward);
-        _blockInvoke = (IMP)blockRef->invoke;
-        _blockSignature = [self blockSignature];
+        
+        _block = block;
+        _impBlockInvoke = (IMP)blockRef->invoke;
+        _blockMethodSignature = [self blockMethodSignature];
     }
     return self;
 }
 
-- (NSMethodSignature *)blockSignature {
-    const char *signature = [self signatureCTypes];
+- (void)setBeforeInvoke:(AXProxyBlockInterpose)beforeInvoke {
+    _beforeInvoke = beforeInvoke;
+}
+
+- (NSMethodSignature *)blockMethodSignature {
+    const char *signature = [[self blockSignatureStringCTypes] UTF8String];
     return [NSMethodSignature signatureWithObjCTypes:signature];
 }
 
-- (const char *)signatureCTypes {
-    AXBlockStruct *blockRef = (__bridge AXBlockStruct *)self.block;
+- (NSString *)blockSignatureStringCTypes {
+    AXBlockStruct *blockRef = (__bridge AXBlockStruct *)_block;
     
     const int flags = blockRef->flags;
     
@@ -111,35 +115,20 @@ typedef NS_ENUM(NSUInteger, AXBlockFlag) {
         signatureLocation += sizeof(void (*)(void *src));
     }
     
-    return (*(const char **)signatureLocation);
-}
-
-- (void)setBlock:(id)block {
-    _block = [block copy];
-}
-
-- (id)block {
-    return _block;
-}
-
-- (void)setBefore:(AXProxyBlockInterpose)before {
-    _before = [before copy];
-}
-
-- (AXProxyBlockInterpose)before {
-    return _before;
+    const char *signature = (*(const char **)signatureLocation);
+    return [NSString stringWithUTF8String:signature];
 }
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector {
-    return _blockSignature;
+    return _blockMethodSignature;
 }
 
 - (void)forwardInvocation:(NSInvocation *)anInvocation {
     [anInvocation setTarget:_block];
-    if (self.before) {
-        self.before(anInvocation);
+    if (_beforeInvoke) {
+        _beforeInvoke(anInvocation);
     }
-    IMP imp = _blockInvoke;
+    IMP imp = _impBlockInvoke;
     [anInvocation invokeUsingIMP:imp];
 }
 

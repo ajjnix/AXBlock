@@ -25,27 +25,18 @@
 
 @implementation AXProxyBlockWithSelf
 
-- (NSMethodSignature *)blockSignature {
-    NSString *resultSignature = [self signatureStringWithSelf];
-    NSMethodSignature *methodSignature = [NSMethodSignature signatureWithObjCTypes:[resultSignature UTF8String]];
-    return methodSignature;
-}
-
-- (NSString *)signatureStringWithSelf {
-    const char *signatureCTypes = [self signatureCTypes];
-    NSString *signature = [NSString stringWithUTF8String:signatureCTypes];
-    NSString *unformatObject = [signature ax_unformatDecToObj];
-    NSString *formatNewSignature = [self addSelfFormat:unformatObject];
+- (NSString *)blockSignatureStringCTypes {
+    NSString *signature = [super blockSignatureStringCTypes];
+    NSString *unformatObject = [signature ax_unformatDec];
+    NSString *formatNewSignature = [self addSelfToFormat:unformatObject];
     
     NSArray *byteSignature = [signature ax_numbers];
     NSArray *byteNewSignature = [self changeByteSignature:byteSignature];
     
-    NSString *resultSignature = [NSString ax_stringWithFormat:formatNewSignature array:byteNewSignature];
-    
-    return resultSignature;
+    return [NSString ax_stringWithFormat:formatNewSignature array:byteNewSignature];
 }
 
-- (NSString *)addSelfFormat:(NSString *)format {
+- (NSString *)addSelfToFormat:(NSString *)format {
     NSMutableArray *marray = [[format componentsSeparatedByString:@"?"] mutableCopy];
     [marray insertObject:@"?%@@" atIndex:1];
     return [marray componentsJoinedByString:@""];

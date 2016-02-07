@@ -122,11 +122,10 @@
     const NSInteger expected = 5;
     
     __block NSInteger sum = 0;
-    SEL selSum = [object ax_lambda:^(NSNumber *argA, NSNumber *argB) {
+    [object performSelector:[object ax_lambda:^(NSNumber *argA, NSNumber *argB) {
         sum = [argA integerValue] + [argB integerValue];
-    }];
+    }] withObject:@(a) withObject:@(b)];
     
-    [object performSelector:selSum withObject:@(a) withObject:@(b)];
     XCTAssertEqual(sum, expected);
 }
 

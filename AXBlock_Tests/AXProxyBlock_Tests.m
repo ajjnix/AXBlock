@@ -46,7 +46,7 @@
         return [NSString stringWithFormat:@"Hello %@", name];
     };
     StringBlock proxyBlock = (StringBlock)[AXProxyBlock initWithBlock:blockHello];
-    [proxyBlock setBefore:^(NSInvocation *invocation){
+    [proxyBlock setBeforeInvoke:^(NSInvocation *invocation){
         NSString *nick = @"ajjnix";
         [invocation setArgument:&nick atIndex:1];
     }];

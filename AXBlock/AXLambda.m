@@ -70,13 +70,13 @@ SEL ax_lambda(id obj, id block, NSMutableArray *lambdas) {
     SEL selector = ax_generateFreeSelector(obj);
     
     AXProxyBlockWithSelf *proxyBlock = [AXProxyBlockWithSelf initWithBlock:block];
-    proxyBlock.before = ^(NSInvocation *invocation){
+    [proxyBlock setBeforeInvoke:^(NSInvocation *invocation){
         ax_offsetArgInInvocation(invocation);
-    };
+    }];
     [lambdas addObject:proxyBlock];
     
     IMP imp = imp_implementationWithBlock(proxyBlock);
-    NSString *signatureString = [proxyBlock signatureStringWithSelf];
+    NSString *signatureString = [proxyBlock blockSignatureStringCTypes];
     class_addMethod([obj class], selector, imp, [signatureString UTF8String]);
     
     return selector;
@@ -96,7 +96,7 @@ SEL ax_generateFreeSelector(id obj) {
 
 void ax_offsetArgInInvocation(NSInvocation *invocation) {
     void *foo = malloc(sizeof(void*));
-    NSInteger arguments = [invocation.methodSignature numberOfArguments];
+    NSInteger arguments = [[invocation methodSignature] numberOfArguments];
     for (NSInteger i = 1; i < arguments-1; i++) { //i = 0 is self
         [invocation getArgument:foo atIndex:i+1];
         [invocation setArgument:foo atIndex:i];
